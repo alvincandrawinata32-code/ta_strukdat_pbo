@@ -11,10 +11,7 @@ class Searching {
         print('\n===== HASIL PENCARIAN =====');
 
         for (int i = 0; i < listDesa.length; i++) {
-            if (listDesa[i]
-            .namaDesa
-            .toLowerCase()
-            .contains(keyword.toLowerCase())) {
+            if (listDesa[i] .namaDesa .toLowerCase() .contains(keyword.toLowerCase())) {
                 listDesa[i].tampilInfo();
 
                 print('--------------------------');
@@ -34,11 +31,7 @@ class Searching {
         print('\n===== HASIL PENCARIAN =====');
 
         for (int i = 0; i < listDesa.length; i++) {
-
-            if (listDesa[i]
-            .potensi
-            .toLowerCase()
-            .contains(potensi.toLowerCase())) {
+            if (listDesa[i] .potensi .toLowerCase() .contains(potensi.toLowerCase())) {
                 listDesa[i].tampilInfo();
 
                 print('--------------------------');
