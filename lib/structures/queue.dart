@@ -1,5 +1,3 @@
-import '../models/desa.dart';
-
 class QueuePencarian {
     List<String> _riwayatPencarian = [];
 

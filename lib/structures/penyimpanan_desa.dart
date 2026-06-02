@@ -10,6 +10,11 @@ class PenyimpananDesa {
             print('\nID desa sudah digunakan!');
             return;
         }
+
+        if (desa.idDesa <= 0) {
+            print('\nID desa harus lebih dari 0!');
+            return;
+        }
         
         listDesa.add(desa);
         mapDesa[desa.idDesa] = desa;

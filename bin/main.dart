@@ -23,7 +23,8 @@ void tampilMenu() {
     print('7. Urutkan Desa');
     print('8. Detail Desa');
     print('9. Lihat Riwayat Pencarian');
-    print('10. Keluar');
+    print('10. Hapus Riwayat Pencarian Terdepan');
+    print('11. Keluar');
     print('================================');
 
     stdout.write('Pilih menu : ');
@@ -95,6 +96,11 @@ void main() {
             stdout.write('Permasalahan : ');
             String masalah = stdin.readLineSync() ?? '';
 
+            if (nama.trim().isEmpty) {
+                print('Nama desa tidak boleh kosong!');
+                break;
+            }
+
             Desa desaBaru = Desa(
                 id,
                 nama,
@@ -115,6 +121,11 @@ void main() {
 
             stdout.write('Tahun : ');
             int tahun = int.tryParse(stdin.readLineSync() ?? '') ?? 0;
+
+            if (tahun <= 0) {
+                print('Tahun tidak valid!');
+                break;
+            }
 
             print('1. Kesehatan');
             print('2. Pendidikan');
@@ -229,6 +240,16 @@ void main() {
             break;
 
             case 10:
+            String? data = queuePencarian.hapusPencarian();
+
+            if (data == null) {
+                print('\nQueue kosong!');
+            } else {
+                print('\nData terhapus: $data');
+            }
+            break;
+
+            case 11:
             print('\nProgram selesai.');
             jalan = false;
             break;
