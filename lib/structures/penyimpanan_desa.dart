@@ -6,6 +6,11 @@ class PenyimpananDesa {
     final Map<int, Desa> mapDesa = {};
 
     void tambahDesa(Desa desa) {
+        if (mapDesa.containsKey(desa.idDesa)) {
+            print('\nID desa sudah digunakan!');
+            return;
+        }
+        
         listDesa.add(desa);
         mapDesa[desa.idDesa] = desa;
 

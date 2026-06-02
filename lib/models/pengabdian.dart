@@ -1,4 +1,4 @@
-import 'pengabdian.dart';
+import 'jenis_pengabdian.dart';
 
 class Pengabdian {
     int _tahun;
