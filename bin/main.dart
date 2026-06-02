@@ -1,13 +1,14 @@
 import 'dart:io';
-import '../models/desa.dart';
-import '../models/pengabdian.dart';
-import '../structures/penyimpanan_desa.dart';
-import '../structures/sorting.dart';
-import '../structures/detail_desa.dart';
-import '../structures/queue.dart';  
-import '../structures/searching.dart';  
-import '../data/desa.csv';
-import '../data/pengabdian.csv';
+import '../lib/models/desa.dart';
+import '../lib/models/pengabdian.dart';
+import '../lib/models/jenis_pengabdian.dart';
+import '../lib/structures/penyimpanan_desa.dart';
+import '../lib/structures/sorting.dart';
+import '../lib/structures/detail_desa.dart';
+import '../lib/structures/queue.dart';  
+import '../lib/structures/searching.dart';  
+import '../lib/data/desa.csv';
+import '../lib/data/pengabdian.csv';
 
 void tampilMenu() {
     print('\n================================');
@@ -21,14 +22,18 @@ void tampilMenu() {
     print('6. Lihat Semua Desa');
     print('7. Urutkan Desa');
     print('8. Detail Desa');
-    print('9. Keluar');
+    print('9. Lihat Riwayat Pencarian');
+    print('10. Keluar');
     print('================================');
 
     stdout.write('Pilih menu : ');
 }
 
 void main() {
-    ManagerDesa manager = ManagerDesa();
+    PenyimpananDesa manager = PenyimpananDesa();
+    Searching searching = Searching(manager.listDesa);
+    Sorting sorting = Sorting(manager.listDesa);
+    DetailDesa detail = DetailDesa(manager.mapDesa);
 
     QueuePencarian queuePencarian = QueuePencarian();
 
@@ -166,7 +171,7 @@ void main() {
             String keyword = stdin.readLineSync() ?? '';
 
             queuePencarian.tambahPencarian('Cari Nama Desa : $keyword');
-            manager.cariDesaNama(keyword);
+            searching.cariDesaNama(keyword);
             break;
 
             case 4:
@@ -174,7 +179,7 @@ void main() {
             String potensi = stdin.readLineSync() ?? '';
 
             queuePencarian.tambahPencarian('Cari Potensi : $potensi');
-            manager.cariDesaPotensi(potensi);
+            searching.cariDesaPotensi(potensi);
             break;
 
             case 5:
@@ -182,7 +187,7 @@ void main() {
             int jumlah = int.tryParse(stdin.readLineSync() ?? '') ?? 0;
 
             queuePencarian.tambahPencarian('Cari Jumlah Pengabdian : $jumlah');
-            manager.cariJumlahPengabdian(jumlah);
+            searching.cariJumlahPengabdian(jumlah);
             break;
 
             case 6:
@@ -198,12 +203,12 @@ void main() {
 
             switch (pilihUrut) {
                 case 1:
-                manager.urutNamaDesa();
+                sorting.urutNamaDesa();
                 manager.tampilSemuaDesa();
                 break;
 
                 case 2:
-                manager.urutJumlahPengabdian();
+                sorting.urutJumlahPengabdian();
                 manager.tampilSemuaDesa();
                 break;
 
@@ -216,16 +221,20 @@ void main() {
             stdout.write('\nMasukkan ID Desa : ');
             int id = int.tryParse(stdin.readLineSync() ?? '') ?? 0;
             
-            manager.detailDesa(id);
+            detail.detailDesa(id);
             break;
 
             case 9:
-            print('\nProgram selesai.');
-            jalan = false;
-
+            queuePencarian.tampilRiwayatPencarian();
             break;
 
-            default: print('\nPilihan tidak valid!');
+            case 10:
+            print('\nProgram selesai.');
+            jalan = false;
+            break;
+
+            default:
+            print('\nPilihan tidak valid!');
         }
     }
 }
