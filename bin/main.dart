@@ -6,9 +6,8 @@ import '../lib/structures/penyimpanan_desa.dart';
 import '../lib/structures/sorting.dart';
 import '../lib/structures/detail_desa.dart';
 import '../lib/structures/queue.dart';  
-import '../lib/structures/searching.dart';  
-import '../lib/data/desa.csv';
-import '../lib/data/pengabdian.csv';
+import '../lib/structures/searching.dart'; 
+import '../lib/data/kelola_csv.dart'; 
 
 void tampilMenu() {
     print('\n================================');
@@ -31,30 +30,17 @@ void tampilMenu() {
 }
 
 void main() {
-    PenyimpananDesa manager = PenyimpananDesa();
-    Searching searching = Searching(manager.listDesa);
-    Sorting sorting = Sorting(manager.listDesa);
-    DetailDesa detail = DetailDesa(manager.mapDesa);
+    PenyimpananDesa dataDesa = PenyimpananDesa();
+
+    KelolaCsv csv = KelolaCsv();
+    csv.bacaDesa(dataDesa);
+    csv.bacaPengabdian(dataDesa);
+    
+    Searching searching = Searching(dataDesa.listDesa);
+    Sorting sorting = Sorting(dataDesa.listDesa);
+    DetailDesa detail = DetailDesa(dataDesa.mapDesa);
 
     QueuePencarian queuePencarian = QueuePencarian();
-
-    Desa desa1 = Desa(
-        1,
-        'Desa Wringinpitu',
-        'Jawa Timur',
-        'Banyuwangi',
-        'Pertanian',
-        'Kurang irigasi',
-    );
-
-    Desa desa2 = Desa(
-        2,
-        'Desa Sumberagung',
-        'Jawa Timur',
-        'Banyuwangi',
-        'Perikanan',
-        'Kurang modal',
-    );
 
     Pengabdian p1 = Pengabdian(
         2024,
@@ -62,11 +48,6 @@ void main() {
         'Poliwangi',
         'Pelatihan aplikasi',
     );
-
-    desa1.tambahPengabdian(p1);
-
-    manager.tambahDesa(desa1);
-    manager.tambahDesa(desa2);
 
     bool jalan = true;
 
@@ -110,7 +91,8 @@ void main() {
                 masalah,
             );
 
-            manager.tambahDesa(desaBaru);
+            dataDesa.tambahDesa(desaBaru);
+            csv.simpanDesa(dataDesa);
 
             break;
 
@@ -171,10 +153,11 @@ void main() {
                 deskripsi,
             );
 
-            manager.tambahRiwayatPengabdian(
+            dataDesa.tambahRiwayatPengabdian(
                 idDesa,
                 pengabdian,
             );
+            csv.simpanPengabdian(dataDesa);
             break;
 
             case 3:
@@ -202,7 +185,7 @@ void main() {
             break;
 
             case 6:
-            manager.tampilSemuaDesa();
+            dataDesa.tampilSemuaDesa();
             break;
 
             case 7:
@@ -215,12 +198,12 @@ void main() {
             switch (pilihUrut) {
                 case 1:
                 sorting.urutNamaDesa();
-                manager.tampilSemuaDesa();
+                dataDesa.tampilSemuaDesa();
                 break;
 
                 case 2:
                 sorting.urutJumlahPengabdian();
-                manager.tampilSemuaDesa();
+                dataDesa.tampilSemuaDesa();
                 break;
 
                 default:

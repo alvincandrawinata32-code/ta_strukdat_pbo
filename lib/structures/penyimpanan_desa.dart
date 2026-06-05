@@ -5,7 +5,7 @@ class PenyimpananDesa {
     final List<Desa> listDesa = [];
     final Map<int, Desa> mapDesa = {};
 
-    void tambahDesa(Desa desa) {
+    void tambahDesa(Desa desa, {bool tampilPesan = true}) {
         if (mapDesa.containsKey(desa.idDesa)) {
             print('\nID desa sudah digunakan!');
             return;
@@ -15,19 +15,23 @@ class PenyimpananDesa {
             print('\nID desa harus lebih dari 0!');
             return;
         }
-        
+
         listDesa.add(desa);
         mapDesa[desa.idDesa] = desa;
 
-        print('\nData desa berhasil ditambahkan!');
-    }
+        if (tampilPesan) {
+            print('\nData desa berhasil ditambahkan!');
+        }
+}
 
     void tambahRiwayatPengabdian(
-        int idDesa, Pengabdian pengabdian) {
+        int idDesa, Pengabdian pengabdian, {bool tampilPesan = true}) {
             if (mapDesa.containsKey(idDesa)) {
                 mapDesa[idDesa]!.tambahPengabdian(pengabdian);
 
-                print('\nRiwayat pengabdian berhasil ditambahkan!');
+                if (tampilPesan) {
+                    print('\nRiwayat pengabdian berhasil ditambahkan!');
+                }
             } else {
                 print('\nID desa tidak ditemukan!');
             }
