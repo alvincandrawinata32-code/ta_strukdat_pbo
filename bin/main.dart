@@ -39,15 +39,7 @@ void main() {
     Searching searching = Searching(dataDesa.listDesa);
     Sorting sorting = Sorting(dataDesa.listDesa);
     DetailDesa detail = DetailDesa(dataDesa.mapDesa);
-
     QueuePencarian queuePencarian = QueuePencarian();
-
-    Pengabdian p1 = Pengabdian(
-        2024,
-        JenisPengabdian.teknologi,
-        'Poliwangi',
-        'Pelatihan aplikasi',
-    );
 
     bool jalan = true;
 
