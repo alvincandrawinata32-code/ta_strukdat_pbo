@@ -1,6 +1,8 @@
 import 'pengabdian.dart';
+import 'data_wilayah.dart';
+import 'cetak_data.dart';
 
-class Desa {
+class Desa extends DataWilayah implements CetakData  {
     int _idDesa;
     String _namaDesa;
     String _provinsi;
@@ -19,8 +21,12 @@ class Desa {
         this._permasalahan,
     );
 
+    @override
     int get idDesa => _idDesa;
+
+    @override
     String get namaDesa => _namaDesa;
+
     String get provinsi => _provinsi;
     String get kabupaten => _kabupaten;
     String get potensi => _potensi;
@@ -39,6 +45,7 @@ class Desa {
         _riwayatPengabdian.add(pengabdian);
     }
 
+    @override
     void tampilInfo() {
         print('ID Desa        : $_idDesa');
         print('Nama Desa      : $_namaDesa');

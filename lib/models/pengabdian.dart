@@ -1,6 +1,7 @@
 import 'jenis_pengabdian.dart';
+import 'cetak_data.dart';   
 
-class Pengabdian {
+class Pengabdian implements CetakData {
     int _tahun;
     JenisPengabdian _jenis;
     String _institusi;
@@ -21,6 +22,7 @@ class Pengabdian {
         _institusi = institusi;
     }
 
+    @override
     void tampilInfo() {
         print('   Tahun      : $_tahun');
         print('   Jenis      : ${_jenis.name}');
