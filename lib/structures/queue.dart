@@ -14,7 +14,7 @@ class QueuePencarian {
     }
 
     void tampilRiwayatPencarian() {
-        print('\n===== RIWAYAT PENCARIAN =====');
+        print('\nRIWAYAT PENCARIAN');
 
         if (_riwayatPencarian.isEmpty) {
             print('Belum ada riwayat pencarian!');

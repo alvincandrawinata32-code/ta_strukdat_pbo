@@ -10,9 +10,9 @@ import '../lib/structures/searching.dart';
 import '../lib/data/kelola_csv.dart'; 
 
 void tampilMenu() {
-    print('\n================================');
+    print('\n--------------------------------------------');
     print('APLIKASI DESA PENGABDIAN');
-    print('================================');
+    print('--------------------------------------------');
     print('1. Tambah Data Desa');
     print('2. Tambah Riwayat Pengabdian');
     print('3. Cari Desa Berdasarkan Nama');
@@ -24,7 +24,7 @@ void tampilMenu() {
     print('9. Lihat Riwayat Pencarian');
     print('10. Hapus Riwayat Pencarian Terdepan');
     print('11. Keluar');
-    print('================================');
+    print('--------------------------------------------');
 
     stdout.write('Pilih menu : ');
 }
